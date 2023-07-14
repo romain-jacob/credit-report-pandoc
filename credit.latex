@@ -1,0 +1,146 @@
+
+$if(stand-alone)$
+\documentclass[a4paper,10pt]{article}
+
+
+% Required packages
+\usepackage[fixed]{fontawesome5}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[skip=12pt plus 2pt]{parskip}
+\usepackage{lmodern}
+
+\hypersetup{
+$if(title-meta)$
+  pdftitle={$title-meta$},
+$endif$
+$if(author-meta)$
+  pdfauthor={$author-meta$},
+$endif$
+$if(lang)$
+  pdflang={$lang$},
+$endif$
+$if(subject)$
+  pdfsubject={$subject$},
+$endif$
+$if(keywords)$
+  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+$endif$
+$if(colorlinks)$
+  colorlinks=true,
+  linkcolor={$if(linkcolor)$$linkcolor$$else$Maroon$endif$},
+  filecolor={$if(filecolor)$$filecolor$$else$Maroon$endif$},
+  citecolor={$if(citecolor)$$citecolor$$else$Blue$endif$},
+  urlcolor={$if(urlcolor)$$urlcolor$$else$Blue$endif$},
+$else$
+$if(boxlinks)$
+$else$
+  hidelinks,
+$endif$
+$endif$
+pdfcreator={LaTeX via pandoc}}
+$endif$
+
+
+\definecolor{green-orcid}{HTML}{A5CC39}
+\definecolor{grey-roles}{gray}{0.3}
+\definecolor{grey-lead}{gray}{0.3}
+\definecolor{grey-equal}{gray}{0.4}
+\definecolor{grey-support}{gray}{0.75}
+\newcommand{\IconORCID}{{\color{green-orcid}{\faIcon{orcid}}}}
+\newcommand{\IconLead}{{\color{grey-lead}{\faIcon{rocket}}}}
+\newcommand{\IconEqual}{{\color{grey-equal}{\faIcon{equals}}}}
+\newcommand{\IconSupporting}{{\color{grey-support}{\faIcon{hands-helping}}}}
+
+
+$if(stand-alone)$
+\date{$date$}
+
+\title{$title$}
+$if(subtitle)$
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{$subtitle$}
+$endif$
+
+\author{}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+%-------------------------------------------------------------------------------
+
+\maketitle
+$else$
+% ========================
+\section{$subtitle$}
+\label{app:credit}
+% ========================  
+$endif$
+
+
+$if(stand-alone)$
+This document lists the author's contributions to the following work.
+$else$
+This section lists the author's contributions to this work.
+$endif$
+The contributions are described using \href{https://credit.niso.org/}{CRediT}, the Contributor Roles Taxonomy, an \href{https://niso.org/}{ANSI/NISO} standard.
+
+All authors agree with this declaration of contributions.
+
+$if(stand-alone)$
+\begin{tabular}{@{}>{\bf}ll}
+    Title & {$title$} \\[0.5ex]
+    DOI & \href{https://doi.org/{$doi$}}{$doi$} \\ 
+\end{tabular}
+$endif$
+
+{\centering 
+
+$if(contributors)$%
+$for(contributors)$%
+\vspace{1ex plus 1em}
+\noindent
+$if(stand-alone)$
+\begin{tabularx}{.7\linewidth}{@{}Xr@{}}
+$else$
+\begin{tabularx}{\linewidth}{@{}Xr@{}}
+$endif$
+    \toprule
+    $contributors.name$ &%
+    $if(contributors.orcid)$\href{https://orcid.org/{$contributors.orcid$}}{{$contributors.orcid$} \IconORCID}$endif$%
+    \\
+    \midrule
+    $if(contributors.roles)$%
+    $for(contributors.roles)$%
+        {$contributors.roles.label$} &%
+        $if(contributors.roles.Lead)$%
+            Lead \IconLead%
+        $endif$%
+        $if(contributors.roles.Equal)$%
+            Equal  \IconEqual%
+        $endif$%
+        $if(contributors.roles.Supporting)$%
+            Supporting \IconSupporting%
+        $endif$%
+        \\
+    $endfor$%
+    $endif$
+\bottomrule
+\end{tabularx}
+
+
+$endfor$%
+$endif$
+}
+
+$if(stand-alone)$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+$endif$

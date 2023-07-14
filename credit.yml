@@ -1,0 +1,17 @@
+---
+title: 'Does rate adaptation at daily timescales make sense?'
+subtitle: 'CRediT Statement' # used as section title for non stand-alone mode
+doi:      # unused
+lang: en  # unused
+keywords: # unused
+stand-alone: False # To not modify
+
+contributors:
+        
+  - name: Me
+    orcid: 0000-0002-3862-XXX
+    roles:
+      - label: Conceptualization
+        Lead: true
+
+---
