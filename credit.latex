@@ -96,7 +96,7 @@ All authors agree with this declaration of contributions.
 $if(stand-alone)$
 \begin{tabular}{@{}>{\bf}ll}
     Title & {$title$} \\[0.5ex]
-    DOI & \href{https://doi.org/{$doi$}}{$doi$} \\ 
+    DOI & \href{https://doi.org/$doi$}{$doi$} \\ 
 \end{tabular}
 $endif$
 
@@ -113,7 +113,7 @@ $else$
 $endif$
     \toprule
     $contributors.name$ &%
-    $if(contributors.orcid)$\href{https://orcid.org/{$contributors.orcid$}}{{$contributors.orcid$} \IconORCID}$endif$%
+    $if(contributors.orcid)$\href{https://orcid.org/$contributors.orcid$}{{$contributors.orcid$} \IconORCID}$endif$%
     \\
     \midrule
     $if(contributors.roles)$%
