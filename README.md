@@ -21,11 +21,26 @@ Using pandoc with the commands provided below, one can easily generate a well-fo
 
 ## Usage
 
+### TeX Section
+
 For generating the statement as a TeX section:
 
 ```bash
 pandoc credit.yml -f markdown --template credit -o credit.tex
 ```
+
+In your main TeX documents, use the following:
+
+```latex
+% in your header, add the following packages (if not present already):
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+
+% wherever you want to use the credits (e.g. after \appendix) add:
+\input{credit.tex}
+```
+
+### Standalone PDF
 
 For generating the statement as stand-alone PDF file:
 
