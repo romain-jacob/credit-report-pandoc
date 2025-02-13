@@ -1,8 +1,8 @@
 # Easy CRediT statement for TeX
 
-This repository provides a pandoc template for easily compiling CRediT statements for TeX documents. 
+This repository provides a pandoc template for easily compiling CRediT statements for TeX documents.
 
-The template can be used to generate either a section to be included, e.g., in the appendix of a paper, or a stand-alone PDF document. 
+The template can be used to generate either a section to be included, e.g., in the appendix of a paper, or a stand-alone PDF document.
 
 The layout of the "section" version is optimized for double-column paper format. The layout of the "stand-alone" version is (very) simplistic.
 
@@ -21,13 +21,28 @@ Using pandoc with the commands provided below, one can easily generate a well-fo
 
 ## Usage
 
-For generating the statement as a TeX section: 
+### TeX Section
+
+For generating the statement as a TeX section:
 
 ```bash
 pandoc credit.yml -f markdown --template credit -o credit.tex
-``` 
+```
 
-For generating the statement as stand-alone PDF file: 
+In your main TeX documents, use the following:
+
+```latex
+% in your header, add the following packages (if not present already):
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+
+% wherever you want to use the credits (e.g. after \appendix) add:
+\input{credit.tex}
+```
+
+### Standalone PDF
+
+For generating the statement as stand-alone PDF file:
 
 ```bash
 pandoc credit.yml -f markdown --template credit -M stand-alone -o credit.pdf
